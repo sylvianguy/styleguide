@@ -18,13 +18,12 @@ app.use(function(req, res, next) {
 	next();
 }); 
 
+//keep this script at top of the file
+app.use(bodyParser.json())
+
 mongoose.connect('mongodb://localhost/styleguide');
 
 app.use('/api/styleguide/', router);
-
-
-//middleware 'use()'
-app.use(bodyParser.json())
 
 // Serve bundle.js
 app.use(webpackMiddleware(webpack(require('./webpack.config.js'))));

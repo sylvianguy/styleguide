@@ -70,6 +70,7 @@ styles.getGuideById = (req, res) => {
 
 //POST// /api/stylguide/create
 styles.createGuide = (req, res) => {
+	console.log(req);
 	const data = req.body
 	console.log(data)
 	new styleguide(data).save((err, doc) => {

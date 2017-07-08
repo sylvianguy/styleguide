@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ajax } from 'jquery';
-import Form from './components/Form';
+import guideData from './src/services/guideService';
+import Form from './src/components/Form';
 
 
 class App extends React.Component {
@@ -12,11 +12,9 @@ class App extends React.Component {
 		}
 	}
 	componentDidMount() {
-		ajax({
-			url: "http://localhost:3500/api/styleguide/get",
-			method:'GET' 
-		})
-		.then((res) => {
+		// console.log(guideData.getGuides);
+		guideData.getGuides().then((res) => {
+			console.log(res);
 			this.setState({
 				data: res
 			})
