@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { ajax } from 'jquery';
+import Form from './components/Form';
 
 
 class App extends React.Component {
@@ -22,7 +23,12 @@ class App extends React.Component {
 		});
 	}
 	render() {
-		return <h1>Stuff goes here eventually</h1>
+		return (
+			<div>
+				<h1>Stuff goes here eventually</h1>
+				<Form />
+			</div>
+		)
 	}
 }
 

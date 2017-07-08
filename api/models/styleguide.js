@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const styleguideSchema = new Schema({
-	name: String,
+	title: String,
 	headingFont: String,
 	bodyFont: String,
 	primaryColour: String,
