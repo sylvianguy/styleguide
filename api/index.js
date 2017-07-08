@@ -8,5 +8,6 @@ router.put('/update/:id', styles.updateGuide);
 router.get('/get', styles.getGuides);
 router.get('/get/:id', styles.getGuideById);
 router.post('/create', styles.createGuide);
+router.delete('/delete/:id', styles.deleteGuide);
 
 module.exports = router;

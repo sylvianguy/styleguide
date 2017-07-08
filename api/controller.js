@@ -85,4 +85,27 @@ styles.createGuide = (req, res) => {
 	})
 };
 
+styles.deleteGuide = (req, res) => {
+	const id = req.params.id;
+	styleguide.findOneAndRemove({_id: id}, (err, doc) => {
+		if(err) {
+			res
+				.status(400)
+				.send(err)
+		}
+		styleguide.find({}, (err, doc) => {
+			if(err) {
+				res
+					.status(400)
+					.send(err)
+			} else {
+				res
+					.status(200)
+					.send(doc)
+			}
+			
+		});
+	});
+};
+
 module.exports = styles;

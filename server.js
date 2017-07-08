@@ -9,9 +9,19 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const router = require('./api/index.js');
 
+//this allows for cross origin access from any port
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Credentials', true);
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Content-length, Accept, x-access-token');
+	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+	next();
+}); 
+
 mongoose.connect('mongodb://localhost/styleguide');
 
 app.use('/api/styleguide/', router);
+
 
 //middleware 'use()'
 app.use(bodyParser.json())
