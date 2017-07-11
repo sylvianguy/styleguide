@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import guideData from './src/services/guideService';
 import Form from './src/components/Form';
 
+import './src/styles/style.scss';
+
 
 class App extends React.Component {
 	constructor() {

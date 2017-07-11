@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const router = require('./api/index.js');
+// const css = require('./src/styles/style.scss');
+
 
 //this allows for cross origin access from any port
 app.use(function(req, res, next) {

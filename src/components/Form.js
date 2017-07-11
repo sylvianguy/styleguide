@@ -38,20 +38,34 @@ class Form extends React.Component {
 	render() {
 		return (
 			<form action="" onSubmit={this.createGuide}>
-				<label htmlFor="">Created by:</label>
-				<input type="text" name="created_by" onChange={this.handleChange} />
-				<label htmlFor="">Name of Theme:</label>
-				<input type="text" name="title" onChange={this.handleChange} />
-				<label htmlFor="">Primary Colour:</label>
-				<input type="text" name="primaryColour" onChange={this.handleChange} />
-				<label htmlFor="">Secondary Colour:</label>
-				<input type="text" name="secondaryColour" onChange={this.handleChange} />
-				<label htmlFor="">Teriary Colour:</label>
-				<input type="text" name="teriaryColour" onChange={this.handleChange} />
-				<label htmlFor="">Heading Font:</label>
-				<input type="text" name="headingFont" onChange={this.handleChange} />
-				<label htmlFor="">Body Font:</label>
-				<input type="text" name="bodyFont" onChange={this.handleChange} />
+				<fieldset>
+					<label htmlFor="">Created by:</label>
+					<input type="text" name="created_by" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Name of Theme:</label>
+					<input type="text" name="title" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Primary Colour:</label>
+					<input type="text" name="primaryColour" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Secondary Colour:</label>
+					<input type="text" name="secondaryColour" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Teriary Colour:</label>
+					<input type="text" name="teriaryColour" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Heading Font:</label>
+					<input type="text" name="headingFont" onChange={this.handleChange} />
+				</fieldset>
+				<fieldset>
+					<label htmlFor="">Body Font:</label>
+					<input type="text" name="bodyFont" onChange={this.handleChange} />
+				</fieldset>
 				<input type='submit' />
 			</form>
 		)
