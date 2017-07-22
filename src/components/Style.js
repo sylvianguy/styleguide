@@ -1,11 +1,13 @@
-import React from 'react';
-
-const Style = () => {
-	return (
-		<style>
-			body
-		</style>
-	)
+const Styles = {
+	"Playfair Display": {
+		fontFamily: 'Playfair Display',
+	},
+	"Raleway": {
+		fontFamily: 'Raleway',
+	},
+	"Lato": {
+		fontFamily: 'Lato',
+	}
 }
 
-export default Style;
+export default Styles;

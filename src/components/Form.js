@@ -1,20 +1,10 @@
 import React from 'react';
 import { ajax } from 'jquery'; 
 import guideData from '../services/guideService';
-import Style from './Style';
+import styles from './Style';
 import ReactFontFace from 'react-font-face';
+import FontConfig from './FontConfig.js';
 
-const styles = {
-	"Playfair Display": {
-		fontFamily: 'Playfair Display',
-	},
-	"Raleway": {
-		fontFamily: 'Raleway',
-	},
-	"Lato": {
-		fontFamily: 'Lato',
-	}
-}
 
 class Form extends React.Component {
 	constructor() {
@@ -29,7 +19,6 @@ class Form extends React.Component {
 			},
 			chosenFont: {},
 			fontConfig: {},
-			fontFiles: []
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.createGuide = this.createGuide.bind(this);
@@ -52,17 +41,11 @@ class Form extends React.Component {
 			.then(console.log);
 	}
 	changeFont(e) {
-		console.log("lala", e.target.value);
-		// let files = [];
-
 		this.setState({
 			chosenFont: e.target.value,
-			// fontConfig,
-			// fontFiles: files
 		})
 	}
 	render() {
-		// console.log(this.state.fontConfig);
 		return (
 			<form action="" onSubmit={this.createGuide}>
 				<section className="themeBlock">
@@ -130,42 +113,6 @@ class Form extends React.Component {
 	}
 }
 
-let fontConfig = {
-	google: [
-		'Playfair Display',
-		'Raleway',
-		'Lato'
-	],
-	file: [
-		{
-			fontFamily: 'Playfair Display',
-			fontStyle: 'normal',
-			fontWeight: 400,
-			fontType: 'truetype',
-			fileLocal: `Playfair Display Regular`,
-		},
-		{
-			fontFamily: 'Raleway',
-			fontStyle: 'normal',
-			fontWeight: 700,
-			fontType: 'truetype',
-			fileLocal: 'Raleway Regular',
-		}
-	]
-}
-
-// this.props.fontInfo.map((item) => {
-// 	console.log(item);
-// 	return fontConfig.file.push({
-// 		fontFamily: item.family,
-// 		fontStyle: 'normal',
-// 		fontWeight: item.variants[0],
-// 		fontType: 'truetype',
-// 		fileLocal: `${item.family} Regular`,
-// 	})
-// })
+export default ReactFontFace(Form, FontConfig);
 
 
-export default ReactFontFace(Form, fontConfig);
-
-// export default Form;

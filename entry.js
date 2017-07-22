@@ -40,8 +40,6 @@ class App extends React.Component {
 			let newFonts = data.items.filter((font) => {
 				return popularFonts.includes(font.family)
 			});
-			console.log(newFonts);
-
 			this.setState({
 				loadedFonts: newFonts
 			})
@@ -50,9 +48,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		// const styles = {
-		// 	fontFamily: 'monospace',
-		// }
 		return (
 			<div>
 				<Header />
