@@ -1,6 +1,20 @@
 import React from 'react';
 import { ajax } from 'jquery'; 
 import guideData from '../services/guideService';
+import Style from './Style';
+import ReactFontFace from 'react-font-face';
+
+const styles = {
+	"Playfair Display": {
+		fontFamily: 'Playfair Display',
+	},
+	"Raleway": {
+		fontFamily: 'Raleway',
+	},
+	"Lato": {
+		fontFamily: 'Lato',
+	}
+}
 
 class Form extends React.Component {
 	constructor() {
@@ -9,15 +23,17 @@ class Form extends React.Component {
 			guide: {
 				title: '',
 				created_by: '',
-				primaryColour: '',
-				secondaryColour: '',
-				teriaryColour: '',
+				colours: [],
 				headingFont: '',
-				bodyFont: ''
-			}
+				bodyFont: '',
+			},
+			chosenFont: {},
+			fontConfig: {},
+			fontFiles: []
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.createGuide = this.createGuide.bind(this);
+		this.changeFont = this.changeFont.bind(this);
 	}
 	handleChange(e) {
 		const guide = Object.assign({}, this.state.guide);
@@ -35,41 +51,121 @@ class Form extends React.Component {
 		guideData.createGuide(this.state.guide)
 			.then(console.log);
 	}
+	changeFont(e) {
+		console.log("lala", e.target.value);
+		// let files = [];
+
+		this.setState({
+			chosenFont: e.target.value,
+			// fontConfig,
+			// fontFiles: files
+		})
+	}
 	render() {
+		// console.log(this.state.fontConfig);
 		return (
 			<form action="" onSubmit={this.createGuide}>
-				<fieldset>
-					<label htmlFor="">Created by:</label>
-					<input type="text" name="created_by" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Name of Theme:</label>
-					<input type="text" name="title" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Primary Colour:</label>
-					<input type="text" name="primaryColour" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Secondary Colour:</label>
-					<input type="text" name="secondaryColour" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Teriary Colour:</label>
-					<input type="text" name="teriaryColour" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Heading Font:</label>
-					<input type="text" name="headingFont" onChange={this.handleChange} />
-				</fieldset>
-				<fieldset>
-					<label htmlFor="">Body Font:</label>
-					<input type="text" name="bodyFont" onChange={this.handleChange} />
-				</fieldset>
+				<section className="themeBlock">
+					<h3>colour palette</h3>
+					<ul className="colours">
+						<li className="colours--circ"></li>
+						<li className="colours--circ"></li>
+						<li className="colours--circ"></li>
+						<li className="colours--circ"></li>
+					</ul>
+					<fieldset>
+						<h4>Add Colours:</h4>
+						<label className="label__icon" htmlFor="colours">
+							<i className="fa fa-plus"></i>
+							<input type="text" id="colours" name="colours" onChange={this.handleChange} required />
+						</label>
+					</fieldset>
+				</section>
+				<section className="themeBlock">
+					<h3>font pairings</h3>
+					<h5>heading font</h5>
+					<fieldset>
+						<h4>Heading Font:</h4>
+						<h2 className="headingFont" style={styles[this.state.chosenFont]}>AWESOME</h2>
+						<label className="label__icon" htmlFor="headingFont">
+							<i className="fa fa-chevron-down"></i>
+							<select name="headingFont" id="headingFont" onChange={this.changeFont} required>
+								{this.props.fontInfo.map((option, i) => {
+									return <option key={i} value={option.family}>{option.family}</option>
+								})}
+							</select>
+						</label>
+					</fieldset>
+				</section>
+				<section className="themeBlock">
+					<fieldset>
+						<h4>Created by:</h4>
+						<label className="label__icon" htmlFor="created_by">
+							<i className="fa fa-plus"></i>
+							<input type="text" name="created_by" id="created_by" onChange={this.handleChange} required />
+						</label>
+					</fieldset>
+				</section>
+				<section className="themeBlock">
+					<fieldset>
+						<h4>Name of Theme:</h4>
+						<label className="label__icon" htmlFor="title">
+							<i className="fa fa-plus"></i>
+							<input type="text" id="title" name="title" onChange={this.handleChange} required />
+						</label>
+					</fieldset>
+				</section>
+				<section className="themeBlock">
+					<fieldset>
+						<h4>Body Font:</h4>
+						<label className="label__icon" htmlFor="bodyFont">
+							<i className="fa fa-plus"></i>
+							<input type="text" id="bodyFont" name="bodyFont" onChange={this.handleChange} required />
+						</label>
+					</fieldset>
+				</section>
 				<input type='submit' />
 			</form>
 		)
 	}
 }
 
-export default Form;
+let fontConfig = {
+	google: [
+		'Playfair Display',
+		'Raleway',
+		'Lato'
+	],
+	file: [
+		{
+			fontFamily: 'Playfair Display',
+			fontStyle: 'normal',
+			fontWeight: 400,
+			fontType: 'truetype',
+			fileLocal: `Playfair Display Regular`,
+		},
+		{
+			fontFamily: 'Raleway',
+			fontStyle: 'normal',
+			fontWeight: 700,
+			fontType: 'truetype',
+			fileLocal: 'Raleway Regular',
+		}
+	]
+}
+
+// this.props.fontInfo.map((item) => {
+// 	console.log(item);
+// 	return fontConfig.file.push({
+// 		fontFamily: item.family,
+// 		fontStyle: 'normal',
+// 		fontWeight: item.variants[0],
+// 		fontType: 'truetype',
+// 		fileLocal: `${item.family} Regular`,
+// 	})
+// })
+
+
+export default ReactFontFace(Form, fontConfig);
+
+// export default Form;

@@ -3,13 +3,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const styleguideSchema = new Schema({
-	title: String,
-	headingFont: String,
-	bodyFont: String,
-	primaryColour: String,
-	secondaryColour: String,
-	teriaryColour: String,
-	created_by: String,
+	title: {
+		type: String,
+		required: true
+	},
+	headingFont: {
+		type: String,
+		required: true
+	},
+	bodyFont: {
+		type: String,
+		required: true
+	}, 
+	colours: [String],
+	created_by: {
+		type: String,
+		required: true
+	},
 	created_at: {
 		type: Number,
 		default: Date.now
