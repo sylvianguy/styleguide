@@ -37,8 +37,6 @@ styles.updateGuide = (req, res) => {
 
 //GET// /api/stylguide/get
 styles.getGuides = (req, res) => {
-	// res.json(req)
-	// console.log(res);
 	styleguide.find({},(err, docs) => {
 		if(err) {
 			res
@@ -53,7 +51,6 @@ styles.getGuides = (req, res) => {
 };
 //GET// /api/stylguide/get/:id
 styles.getGuideById = (req, res) => {
-	// console.log(req.params.id);
 	const id = req.params.id
 	styleguide.findOne({_id : id }, (err, doc) => {
 		if(err) {
@@ -70,9 +67,7 @@ styles.getGuideById = (req, res) => {
 
 //POST// /api/stylguide/create
 styles.createGuide = (req, res) => {
-	console.log(req);
 	const data = req.body
-	console.log(data)
 	new styleguide(data).save((err, doc) => {
 		if(err) {
 			res

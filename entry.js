@@ -23,6 +23,7 @@ class App extends React.Component {
 	}
 	componentDidMount() {
 		guideData.getGuides().then((res) => {
+			console.log(res);
 			this.setState({
 				data: res
 			})
