@@ -111,6 +111,12 @@ li {
 	height: 151px;
 	border-radius: 50%;
 	margin: 0 31px;
+	&.checked {
+		border: 2px solid darken($inputBorder, 10);
+	}
+	input {
+		display: none;
+	}
 }
 
 .themeBlock {

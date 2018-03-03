@@ -67,6 +67,9 @@ class Form extends React.Component {
 	
 	saveColors() {
 		console.log('hi');
+		this.setState({
+			
+		})
 	}
 	render() {
 		const style = {

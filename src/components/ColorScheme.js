@@ -8,7 +8,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
       <div className="colours">
         <label
           style={styles["primary"]}
-          className="colours--circ"
+          className={selectedColor === 'primary' ? 'colours--circ checked' : 'colours--circ' }
           onChange={changeColor}
           htmlFor="primary"
         >
@@ -22,7 +22,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["secondary"]}
-          className="colours--circ"
+          className={selectedColor === 'secondary' ? 'colours--circ checked' : 'colours--circ'}
           htmlFor="secondary"
         >
           <input
@@ -36,7 +36,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["third"]}
-          className="colours--circ"
+          className={selectedColor === 'third' ? 'colours--circ checked' : 'colours--circ'}
           htmlFor="third"
         >
           <input
@@ -50,7 +50,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["fourth"]}
-          className="colours--circ"
+          className={selectedColor === 'fourth' ? 'colours--circ checked' : 'colours--circ'}
           htmlFor="fourth"
         >
           <input
@@ -68,7 +68,13 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
           <h4>Add Colours:</h4>
           <label className="label__icon" htmlFor="colours">
             <i onClick={saveColors} className="fa fa-plus"></i>
-            <input type="text" id="colours" name="colours" onChange={colorSelection} required />
+            <input
+              type="text"
+              id="colours"
+              name="colours"
+              onChange={colorSelection}
+              required
+            />
           </label>
         </fieldset>
       </DisplayInfo>
