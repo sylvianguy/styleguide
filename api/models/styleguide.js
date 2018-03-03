@@ -15,7 +15,12 @@ const styleguideSchema = new Schema({
 		type: String,
 		required: true
 	}, 
-	colours: [{String}],
+	colours: [{
+		primary: String,
+		secondary: String,
+		third: String,
+		fourth: String
+	}],
 	created_by: {
 		type: String,
 		required: true

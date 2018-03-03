@@ -22,6 +22,15 @@ export default {
 				'Accept' : 'application/json'
 			}
 		})
+	},
+	
+	getFonts() {
+		const apiKey = 'AIzaSyDKawQ2rl2rHSbYIhlAWZnsr_dfb3vGLnk';
+		return ajax({
+			url: `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`,
+			method: 'GET',
+			dataType: 'JSON',
+		})
 	}
 	
 }

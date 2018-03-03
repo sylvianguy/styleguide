@@ -31,20 +31,14 @@ class App extends React.Component {
 
 		const popularFonts = this.state.popularFonts;
 
-		const apiKey = 'AIzaSyDKawQ2rl2rHSbYIhlAWZnsr_dfb3vGLnk';
+		guideData.getFonts().then((data) => {
+				let newFonts = data.items.filter((font) => {
+					return popularFonts.includes(font.family)
+				});
 
-		ajax({
-			url: `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`,
-			method: 'GET',
-			dataType: 'JSON',
-		}).then((data) => {
-			let newFonts = data.items.filter((font) => {
-				return popularFonts.includes(font.family)
-			});
-			this.setState({
-				loadedFonts: newFonts
-			})
-
+				this.setState({
+					loadedFonts: newFonts
+				})
 		});
 	}
 
@@ -54,7 +48,10 @@ class App extends React.Component {
 				<Header />
 				<div className="wrapper">
 					<h1>Stuff goes here eventually</h1>
-					<Form fonts={this.state.popularFonts} fontInfo={this.state.loadedFonts}/>
+					<Form
+						fonts={this.state.popularFonts}
+						fontInfo={this.state.loadedFonts}
+					/>
 				</div>
 			</div>
 		)

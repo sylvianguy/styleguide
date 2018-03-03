@@ -4,6 +4,7 @@ import guideData from '../services/guideService';
 import fonts from './Fonts';
 import ReactFontFace from 'react-font-face';
 import FontConfig from './FontConfig.js';
+import ColorScheme from './ColorScheme.js';
 
 
 class Form extends React.Component {
@@ -25,24 +26,22 @@ class Form extends React.Component {
 				bodyFont: '',
 			},
 			selectedColor: '',
-			chosenFont: {},
-			fontConfig: {},
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.createGuide = this.createGuide.bind(this);
-		this.changeFont = this.changeFont.bind(this);
 		this.changeColor = this.changeColor.bind(this);
 		this.colorSelection = this.colorSelection.bind(this);
+		this.saveColors = this.saveColors.bind(this);
 	}
+
 	handleChange(e) {
 		const guide = Object.assign({}, this.state.guide);
-
 		guide[e.target.name] = e.target.value;
-
 		this.setState({
 			guide
 		});
 	}
+
 	createGuide(e) {
 		e.preventDefault();
 		const guide = Object.assign({}, this.state.guide);
@@ -50,27 +49,24 @@ class Form extends React.Component {
 		guideData.createGuide(this.state.guide)
 			.then(console.log);
 	}
-	changeFont(e) {
-		this.setState({
-			chosenFont: e.target.value,
-		})
-	}
+
 	colorSelection(e) {
 		const guide = Object.assign({}, this.state.guide);
-
 		guide.colours[0][this.state.selectedColor] = e.target.value
-
 		this.setState({
 			guide
 		})
 	}
+
 	changeColor(e) {
-		// console.log(this.state.guide.colours[0][e.target.value]);
-		// const guide = Object.assign({}, this.state.guide);
-		// guide.colours[0][e.target.value] = 
+		const guide = Object.assign({}, this.state.guide);
 		this.setState({
-			selectedColor: e.target.value
+			selectedColor: e.target.id
 		})
+	}
+	
+	saveColors() {
+		console.log('hi');
 	}
 	render() {
 		const style = {
@@ -90,38 +86,27 @@ class Form extends React.Component {
 		return (
 			<form action="" onSubmit={this.createGuide}>
 				<section className="themeBlock">
-					<h3>colour palette</h3>
-					<div className="colours">
-						<label style={style["primary"]} className="colours--circ" onChange={this.changeColor} htmlFor="primary">
-							<input name="colours" id="primary" value="primary" type="radio" />
-						</label>
-						<label style={style["secondary"]} className="colours--circ" htmlFor="secondary">
-							<input onChange={this.changeColor} name="colours" id="secondary" value="secondary" type="radio" />
-						</label>
-						<label style={style["third"]} className="colours--circ" htmlFor="third">
-							<input onChange={this.changeColor} name="colours" id="third" value="third" type="radio" />
-						</label>
-						<label style={style["fourth"]} className="colours--circ" htmlFor="fourth">
-							<input onChange={this.changeColor} name="colours" id="fourth" value="fourth" type="radio" />
-						</label>
-					</div>
-					<fieldset>
-						<h4>Add Colours:</h4>
-						<label className="label__icon" htmlFor="colours">
-							<i className="fa fa-plus"></i>
-							<input type="text" id="colours" name="colours" onChange={this.colorSelection} required />
-						</label>
-					</fieldset>
+					<ColorScheme
+						styles={style}
+						changeColor={this.changeColor}
+						selectedColor={this.state.selectedColor}
+						saveColors={this.saveColors}
+						colorSelection={this.colorSelection}
+					/>
 				</section>
 				<section className="themeBlock">
 					<h3>font pairings</h3>
 					<h5>heading font</h5>
 					<fieldset>
 						<h4>Heading Font:</h4>
-						<h2 className="headingFont" style={fonts[this.state.chosenFont]}>Awesome Font</h2>
+						<h2
+							className="headingFont"
+							style={fonts[this.state.guide.headingFont]}>
+							Awesome Font
+						</h2>
 						<label className="label__icon" htmlFor="headingFont">
 							<i className="fa fa-chevron-down"></i>
-							<select name="headingFont" id="headingFont" onChange={this.changeFont} required>
+							<select name="headingFont" id="headingFont" onChange={this.handleChange} required>
 								{this.props.fontInfo.map((option, i) => {
 									return <option key={i} value={option.family}>{option.family}</option>
 								})}
@@ -134,7 +119,13 @@ class Form extends React.Component {
 						<h4>Created by:</h4>
 						<label className="label__icon" htmlFor="created_by">
 							<i className="fa fa-plus"></i>
-							<input type="text" name="created_by" id="created_by" onChange={this.handleChange} required />
+							<input
+								type="text"
+								name="created_by"
+								id="created_by"
+								onChange={this.handleChange}
+								required
+							/>
 						</label>
 					</fieldset>
 				</section>
@@ -143,7 +134,13 @@ class Form extends React.Component {
 						<h4>Name of Theme:</h4>
 						<label className="label__icon" htmlFor="title">
 							<i className="fa fa-plus"></i>
-							<input type="text" id="title" name="title" onChange={this.handleChange} required />
+							<input
+								type="text"
+								id="title"
+								name="title"
+								onChange={this.handleChange}
+								required
+							/>
 						</label>
 					</fieldset>
 				</section>
