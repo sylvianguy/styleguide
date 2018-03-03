@@ -2,13 +2,16 @@ import React from 'react';
 import DisplayInfo from './DisplayInfo.js';
 
 const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSelection }) => {
+  const selection = (color) => {
+    return selectedColor === color ? 'colours--circ checked' : 'colours--circ'
+  }
   return (
     <div>
       <h3>colour palette</h3>
       <div className="colours">
         <label
           style={styles["primary"]}
-          className={selectedColor === 'primary' ? 'colours--circ checked' : 'colours--circ' }
+          className={selection('primary')}
           onChange={changeColor}
           htmlFor="primary"
         >
@@ -22,7 +25,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["secondary"]}
-          className={selectedColor === 'secondary' ? 'colours--circ checked' : 'colours--circ'}
+          className={selection('secondary')}
           htmlFor="secondary"
         >
           <input
@@ -36,7 +39,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["third"]}
-          className={selectedColor === 'third' ? 'colours--circ checked' : 'colours--circ'}
+          className={selection('third')}
           htmlFor="third"
         >
           <input
@@ -50,7 +53,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
         </label>
         <label
           style={styles["fourth"]}
-          className={selectedColor === 'fourth' ? 'colours--circ checked' : 'colours--circ'}
+          className={selection('fourth')}
           htmlFor="fourth"
         >
           <input
