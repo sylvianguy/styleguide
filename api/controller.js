@@ -14,7 +14,7 @@ styles.updateGuide = (req, res) => {
 				})
 			return;
 		}
-		//deleting the id from the  
+		//deleting the id from the database
 		delete newModel._id;
 		Object.assign(doc, newModel);
 		doc.save((err, doc) => {
@@ -99,7 +99,6 @@ styles.deleteGuide = (req, res) => {
 					.status(200)
 					.send(doc)
 			}
-			
 		});
 	});
 };

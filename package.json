@@ -39,6 +39,7 @@
     "babel-loader": "^7.0.0-alpha.3",
     "extract-text-webpack-plugin": "^2.1.2",
     "sass-loader": "^4.1.1",
+    "webfontloader": "^1.6.28",
     "webpack": "^2.7.0"
   }
 }

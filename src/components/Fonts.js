@@ -1,12 +1,21 @@
 const Styles = {
-	"Playfair Display": {
+	'Playfair Display': {
 		fontFamily: 'Playfair Display, serif',
 	},
-	"Raleway": {
+	'Raleway': {
 		fontFamily: 'Raleway, sans-serif',
 	},
-	"Lato": {
+	'Lato': {
 		fontFamily: 'Lato, sans-serif',
+	},
+	'Titillium Web': {
+		fontFamily: 'Titillium Web, sans-serif',
+	},
+	'Roboto': {
+		fontFamily: 'Roboto, sans-serif',
+	},
+	'Lobster': {
+		fontFamily: 'Lobster, serif',
 	}
 }
 

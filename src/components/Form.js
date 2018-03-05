@@ -1,10 +1,10 @@
 import React from 'react';
-import { ajax } from 'jquery'; 
+import ReactFontFace from 'react-font-face';
+
 import guideData from '../services/guideService';
 import fonts from './Fonts';
-import ReactFontFace from 'react-font-face';
-import FontConfig from './FontConfig.js';
-import ColorScheme from './ColorScheme.js';
+import ColorSelection from './ColorSelection.js';
+import WebFont from 'webfontloader';
 
 
 class Form extends React.Component {
@@ -32,6 +32,7 @@ class Form extends React.Component {
 		this.changeColor = this.changeColor.bind(this);
 		this.colorSelection = this.colorSelection.bind(this);
 		this.saveColors = this.saveColors.bind(this);
+		this.changeFont = this.changeFont.bind(this);
 	}
 
 	handleChange(e) {
@@ -42,6 +43,21 @@ class Form extends React.Component {
 		});
 	}
 
+	changeFont(e) {
+		const guide = Object.assign({}, this.state.guide);
+		guide['headingFont'] = e.target.value;
+		this.setState({
+			guide
+		});
+		console.log(e.target.value);
+		console.log("hello", this.props.fontInfo);
+
+		WebFont.load({
+			google: {
+				families: [`${e.target.value}:300`]
+			}
+		});
+	}
 	createGuide(e) {
 		e.preventDefault();
 		const guide = Object.assign({}, this.state.guide);
@@ -67,9 +83,9 @@ class Form extends React.Component {
 	
 	saveColors() {
 		console.log('hi');
-		this.setState({
-			
-		})
+		// this.setState({
+
+		// })
 	}
 	render() {
 		const style = {
@@ -89,7 +105,7 @@ class Form extends React.Component {
 		return (
 			<form action="" onSubmit={this.createGuide}>
 				<section className="themeBlock">
-					<ColorScheme
+					<ColorSelection
 						styles={style}
 						changeColor={this.changeColor}
 						selectedColor={this.state.selectedColor}
@@ -105,11 +121,16 @@ class Form extends React.Component {
 						<h2
 							className="headingFont"
 							style={fonts[this.state.guide.headingFont]}>
-							Awesome Font
+							I watched the storm, so beautiful yet terrific.
 						</h2>
 						<label className="label__icon" htmlFor="headingFont">
 							<i className="fa fa-chevron-down"></i>
-							<select name="headingFont" id="headingFont" onChange={this.handleChange} required>
+							<select
+								name="headingFont"
+								id="headingFont"
+								onChange={this.changeFont}
+								required
+							>
 								{this.props.fontInfo.map((option, i) => {
 									return <option key={i} value={option.family}>{option.family}</option>
 								})}
@@ -152,7 +173,13 @@ class Form extends React.Component {
 						<h4>Body Font:</h4>
 						<label className="label__icon" htmlFor="bodyFont">
 							<i className="fa fa-plus"></i>
-							<input type="text" id="bodyFont" name="bodyFont" onChange={this.handleChange} required />
+							<input 
+								type="text"
+								id="bodyFont"
+								name="bodyFont"
+								onChange={this.handleChange}
+								required
+							/>
 						</label>
 					</fieldset>
 				</section>
@@ -162,6 +189,6 @@ class Form extends React.Component {
 	}
 }
 
-export default ReactFontFace(Form, FontConfig);
+export default Form;
 
 
