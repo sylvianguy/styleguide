@@ -49,8 +49,6 @@ class Form extends React.Component {
 		this.setState({
 			guide
 		});
-		console.log(e.target.value);
-		console.log("hello", this.props.fontInfo);
 
 		WebFont.load({
 			google: {
@@ -115,7 +113,6 @@ class Form extends React.Component {
 				</section>
 				<section className="themeBlock">
 					<h3>font pairings</h3>
-					<h5>heading font</h5>
 					<fieldset>
 						<h4>Heading Font:</h4>
 						<h2

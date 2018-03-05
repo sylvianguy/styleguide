@@ -2,9 +2,9 @@ import React from 'react';
 import DisplayInfo from './DisplayInfo.js';
 
 const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSelection }) => {
-  const selection = (color) => {
-    return selectedColor === color ? 'colours--circ checked' : 'colours--circ'
-  }
+  const selection = (color => selectedColor === color ? 'colours--circ checked' : 'colours--circ' );
+  const checkingIf = (color => selectedColor === color );
+
   return (
     <div>
       <h3>colour palette</h3>
@@ -16,7 +16,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
           htmlFor="primary"
         >
           <input
-            checked={selectedColor === 'primary'}
+            checked={checkingIf('primary')}
             name="colours"
             id="primary"
             value="primary"
@@ -29,7 +29,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
           htmlFor="secondary"
         >
           <input
-            checked={selectedColor === 'secondary'}
+            checked={checkingIf('secondary')}
             onChange={changeColor}
             name="colours"
             id="secondary"
@@ -43,7 +43,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
           htmlFor="third"
         >
           <input
-            checked={selectedColor === 'third'}
+            checked={checkingIf('third')}
             onChange={changeColor}
             name="colours"
             id="third"
@@ -57,7 +57,7 @@ const ColorScheme = ({ styles, changeColor, selectedColor, saveColors, colorSele
           htmlFor="fourth"
         >
           <input
-            checked={selectedColor === 'fourth'}
+            checked={checkingIf('fourth')}
             onChange={changeColor}
             name="colours"
             id="fourth"
